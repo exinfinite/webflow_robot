@@ -4,5 +4,15 @@
     X-Robots-Tag = "none"
 [[redirects]]
   from = "/*"
-  to = "/entry.html"
+  to = "/szt.html"
   status = 200
+################################
+[dev]
+  [[headers]]
+    for = "/*"
+    [headers.values]
+      X-Robots-Tag = "none"
+  [[redirects]]
+    from = "/*"
+    to = "/szt.html"
+    status = 200

@@ -4,7 +4,8 @@
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
-    "build": "gulp --target public"
+    "build": "gulp --target public",
+    "preview": "netlify dev -d public"
   },
   "author": "exinfinite.chen <exinfinite_chen@ticgroup.com.tw>",
   "license": "MIT",
