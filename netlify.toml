@@ -1,0 +1,8 @@
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "none"
+[[redirects]]
+  from = "/*"
+  to = "/entry.html"
+  status = 200

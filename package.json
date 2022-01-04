@@ -1,0 +1,18 @@
+{
+  "name": "webflow_robot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "build": "gulp --target public"
+  },
+  "author": "exinfinite.chen <exinfinite_chen@ticgroup.com.tw>",
+  "license": "MIT",
+  "devDependencies": {
+    "del": "^6.0.0",
+    "extract-zip": "^2.0.1",
+    "gulp": "^4.0.2",
+    "recursive-copy": "^2.0.13",
+    "yarg": "^1.0.8"
+  }
+}
