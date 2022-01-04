@@ -1,5 +1,7 @@
-const { task, series } = require('gulp'),
+const { task, series, parallel } = require('gulp'),
 	fs = require('fs'),
+	os = require('os'),
+	crypto = require('crypto'),
 	path = require('path'),
 	args = require('yargs').argv,
 	extract = require('extract-zip'),
@@ -8,7 +10,7 @@ const { task, series } = require('gulp'),
 
 const config = {
 	"theme_zip": "./ex-misc.webflow.zip",
-	"theme_extract_dir": "_extract",
+	"theme_extract_dir": os.tmpdir() + '/webflow/' + crypto.randomBytes(16).toString('hex'),
 	"publish_dir": args.target || 'dist',
 	"copy_filter": [
 		'css/*',
@@ -39,7 +41,7 @@ async function copyFiles(src, target, filter = null) {
 }
 task('extract zip', async function (done) {
 	try {
-		await extract(config.theme_zip, { dir: path.join(__dirname, config.theme_extract_dir) });
+		await extract(config.theme_zip, { dir: config.theme_extract_dir });
 		done();
 	} catch (err) {
 		console.error(err);
@@ -67,7 +69,4 @@ task('clean', () => {
 	return del([config.theme_extract_dir]);
 });
 
-task('default', parallel(
-	series('extract zip', 'create publish dir', 'copy custom dir', 'copy web', 'copy toml'),
-	'clean')
-);
+task('default', series('extract zip', 'create publish dir', 'copy custom dir', 'copy web', 'copy toml'));
