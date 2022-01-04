@@ -8,7 +8,7 @@ const { task, series } = require('gulp'),
 
 const config = {
 	"theme_zip": "./ex-misc.webflow.zip",
-	"theme_extract_dir": path.join(__dirname, 'ex-misc.webflow'),
+	"theme_extract_dir": "_extract",
 	"publish_dir": args.target || 'dist',
 	"copy_filter": [
 		'css/*',
@@ -22,7 +22,7 @@ const config = {
 	"custom_dir": []//要複製的自訂資料夾：['custom', 'vendors']
 };
 async function copyFiles(src, target, filter = null) {
-	return copy(src, target, {
+	return copy(src, path.join(__dirname, target), {
 		overwrite: true,
 		expand: true,
 		dot: true,
@@ -39,7 +39,7 @@ async function copyFiles(src, target, filter = null) {
 }
 task('extract zip', async function (done) {
 	try {
-		await extract(config.theme_zip, { dir: config.theme_extract_dir });
+		await extract(config.theme_zip, { dir: path.join(__dirname, config.theme_extract_dir) });
 		done();
 	} catch (err) {
 		console.error(err);
