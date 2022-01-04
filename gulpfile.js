@@ -67,4 +67,7 @@ task('clean', () => {
 	return del([config.theme_extract_dir]);
 });
 
-task('default', series('extract zip', 'create publish dir', 'copy custom dir', 'copy web', 'copy toml', 'clean'));
+task('default', parallel(
+	series('extract zip', 'create publish dir', 'copy custom dir', 'copy web', 'copy toml'),
+	'clean')
+);
