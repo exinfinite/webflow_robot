@@ -1,4 +1,4 @@
-# Webflow output to Netlify 自動化工具
+# Webflow output for Netlify 自動化專案範本
 
 ## Install
 
