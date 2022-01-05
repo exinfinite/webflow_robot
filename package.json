@@ -13,6 +13,8 @@
     "del": "^6.0.0",
     "extract-zip": "^2.0.1",
     "gulp": "^4.0.2",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-jsdom": "^1.1.0",
     "recursive-copy": "^2.0.13",
     "yarg": "^1.0.8"
   }
