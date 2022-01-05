@@ -85,6 +85,7 @@ async function copyFiles(src, target, filter = null) {
 			process.exit();
 		});
 }
+//解壓縮到暫存資料夾
 task('extract zip', async function (done) {
 	try {
 		await extract(config.theme_zip, { dir: config.theme_extract_dir });
@@ -94,28 +95,33 @@ task('extract zip', async function (done) {
 		process.exit();
 	}
 });
+//建立發布資料夾
 task('create publish dir', function (done) {
 	fs.mkdir(path.join(__dirname, config.publish_dir), { recursive: true }, (err) => err ? console.error(err) : '');
 	done();
 });
+//複製發布設定檔
 task('copy toml', function (done) {
 	fs.copyFile("./netlify.toml", `./${config.publish_dir}/netlify.toml`, function (e) { });
 	done();
 });
+//複製自訂程式
 task('copy custom dir', function (done) {
 	config.custom_dir.forEach(async dir => {
 		await copyFiles(path.join(__dirname, dir), `${config.publish_dir}/${dir}`);
 	});
 	done();
 });
+//由暫存資料夾複製到發佈資料夾
 task('copy web', async function (done) {
 	await copyFiles(config.theme_extract_dir, config.publish_dir, config.copy_filter);
 	done();
 });
+//整理html
 task('html process', async function (done) {
 	config.minifier.pages.forEach(page => {
 		src(`${config.publish_dir}/${page}`)
-			.pipe(htmlmin({
+			.pipe(htmlmin({//minify
 				collapseWhitespace: true,
 				removeComments: true,
 				minifyJS: true,
@@ -131,7 +137,7 @@ task('html process', async function (done) {
 					return url;
 				}
 			}))
-			.pipe(dom(document => {
+			.pipe(dom(document => {//移除webflow跨域資源設定
 				let t = document.querySelectorAll('[crossorigin]');
 				document.querySelectorAll('[crossorigin]').forEach(function (el) {
 					el.removeAttribute('integrity');
@@ -142,6 +148,7 @@ task('html process', async function (done) {
 	});
 	done();
 });
+//清除暫存資料
 task('clean', () => {
 	return del([config.theme_extract_dir]);
 });
