@@ -5,7 +5,10 @@
   "main": "gulpfile.js",
   "scripts": {
     "build": "gulp --target public",
-    "preview": "netlify dev -d public"
+    "local_preview": "netlify dev -d public",
+    "deploy_preview": "netlify dev --live -d public",
+    "deploy": "netlify deploy -d public",
+    "deploy_prod": "netlify deploy --prod -d public"
   },
   "author": "exinfinite.chen <exinfinite_chen@ticgroup.com.tw>",
   "license": "MIT",

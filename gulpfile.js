@@ -23,7 +23,7 @@ const config = {
 		'images/webclip*',
 		'index.html'
 	],
-	"custom_dir": ['custom', 'vendors'],
+	"custom_dir": ['_custom'],
 	"minifier": {
 		"pages": ['index.html'],
 		"base_url": "https://example.com.tw/",

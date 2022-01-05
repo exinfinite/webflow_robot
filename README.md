@@ -19,7 +19,7 @@ npm run build
 
 ### 將public資料夾發布至Netlify
 
-## 本機預覽
+## 預覽&部署
 
 ### 全域安裝netlify cli
 
@@ -33,8 +33,20 @@ npm install netlify-cli –g
 netlify init
 ```
 
-### 啟動預覽
+### 預覽
 
 ```js
-npm run preview
+//本機預覽
+npm run local_preview
+//部署預覽
+npm run deploy_preview
+```
+
+### 部署
+
+```js
+//部署但不發佈
+npm run deploy
+//正式部署並發佈
+npm run deploy_prod
 ```
