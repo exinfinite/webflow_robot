@@ -1,13 +1,15 @@
 # Webflow output for Netlify 自動化專案範本
 
-## 自動清理檔案
-### Install
+## 安裝套件
 
 ```js
 npm install
 ```
+<br>
 
-### 將Webflow輸出的zip放置在專案根目錄
+## 自動清理檔案
+
+### 將Webflow輸出的zip放置在根目錄
 
 ### 修改gulpfile.js的config
 
@@ -18,6 +20,8 @@ npm run build
 ```
 
 ### 將public資料夾發布至Netlify
+
+<br>
 
 ## 預覽&部署
 
