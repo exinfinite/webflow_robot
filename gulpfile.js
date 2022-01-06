@@ -137,8 +137,12 @@ task('html process', async function (done) {
 					return url;
 				}
 			}))
+			.pipe(dom(document => {//移除generator
+				document.querySelectorAll('[name="generator"]').forEach(function (el) {
+					el.remove();
+				});
+			}))
 			.pipe(dom(document => {//移除webflow跨域資源設定
-				let t = document.querySelectorAll('[crossorigin]');
 				document.querySelectorAll('[crossorigin]').forEach(function (el) {
 					el.removeAttribute('integrity');
 					el.removeAttribute('crossorigin');
